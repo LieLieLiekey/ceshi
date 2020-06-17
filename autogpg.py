@@ -17,6 +17,7 @@ PREURL_LIST = ["https://gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.38.tar.
              "https://gnupg.org/ftp/gcrypt/gpgme/gpgme-1.13.1.tar.bz2",
              "https://gnupg.org/ftp/gcrypt/scute/scute-1.6.0.tar.bz2",
              "https://gnupg.org/ftp/gcrypt/gpa/gpa-0.10.0.tar.bz2"
+             "https://gnupg.org/ftp/gcrypt/gnupg/gnupg-2.2.20.tar.bz2"
              ]
 def getbasename(s):
     basename = path.basename(s)
