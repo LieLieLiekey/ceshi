@@ -7,7 +7,7 @@ import  os.path as path
 
 import shutil
 
-__prename = ["https://gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.38.tar.bz2",
+PREURL_LIST = ["https://gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.38.tar.bz2",
              "https://gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.8.5.tar.bz2",
              "https://gnupg.org/ftp/gcrypt/libksba/libksba-1.4.0.tar.bz2",
              "https://gnupg.org/ftp/gcrypt/libassuan/libassuan-2.5.3.tar.bz2",
@@ -26,54 +26,48 @@ def removetar(s):
     return s[:-8]
 
 def ptlog(s):
-    print("!!!      log: ",s)
-    print("!!!!!!!!         pause ............ enter to continue")
+    logging.info(s)
     time.sleep(1)
 def errorhandle(s):
-    print("!!!      error: ", s)
-    input("!!!!!!!!         pause ............ enter to continue")
+    print("!!!!!    error",s)
     exit(1)
+def executecommand(cmd,url=""):
+    logging.info("execute "+cmd)
+    status = os.system(cmd)
+    if status != 0:
+        logging.error(" cmd:"+cmd+"url:"+url )
+        errorhandle(" cmd:"+cmd+"url:"+url )
 def run(url):
     urlbasename = getbasename(url)
     tarbasename = removetar(urlbasename)
 
     #enter  home
+    logging.info("execute cd ~")
     os.chdir(os.getenv("HOME"))
 
     #download file
     if not path.exists(urlbasename):
-        status = os.system(r'wget {}'.format(url))
-        if status != 0:
-            errorhandle("wget error")
+        executecommand(r'wget {}'.format(url),url)
 
     #tar -jxvf
     if not path.exists(tarbasename):
-        status = os.system(r'tar -jxf {}'.format(urlbasename))
-        if status != 0:
-            errorhandle("wget error")
+        executecommand(r'tar -jxf {}'.format(urlbasename),url)
 
     #enter dir
+    logging.info("execute cd "+tarbasename)
     os.chdir(tarbasename)
 
     ##./configure
-    status = os.system("./configure")
-    if status !=0:
-        os.system('make distclean')
-        errorhandle("./configure error")
+    executecommand("./configure",url)
 
     ##make
-        ##afresh
-    status = os.system("make")
-    if status != 0:
-        os.system('make clean')
-        errorhandle("make error")
+    executecommand("make",url)
 
     ##make install
-    status = os.system("make install")
-    if status != 0:
-        os.system('make clean')
-        errorhandle("make install error")
+    executecommand("make install",url)
+
 if __name__ == '__main__':
-    for i in __prename :
+    logging.basicConfig(filename= "autopgp.log",level=logging.DEBUG)
+    for i in PREURL_LIST :
         run(i)
-        ptlog("down file:" + i + "already ok.")
+        logging.info("down file:" + i + "already ok.")
