@@ -7,17 +7,18 @@ import  os.path as path
 
 import shutil
 
-PREURL_LIST = ["https://gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.38.tar.bz2",
+PREURL_LIST = [
+			 "https://gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.38.tar.bz2",
              "https://gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.8.5.tar.bz2",
              "https://gnupg.org/ftp/gcrypt/libksba/libksba-1.4.0.tar.bz2",
              "https://gnupg.org/ftp/gcrypt/libassuan/libassuan-2.5.3.tar.bz2",
              "https://gnupg.org/ftp/gcrypt/ntbtls/ntbtls-0.1.2.tar.bz2",
              "https://gnupg.org/ftp/gcrypt/npth/npth-1.6.tar.bz2",
              "https://gnupg.org/ftp/gcrypt/pinentry/pinentry-1.1.0.tar.bz2",
+             "https://gnupg.org/ftp/gcrypt/gnupg/gnupg-2.2.20.tar.bz2"
              "https://gnupg.org/ftp/gcrypt/gpgme/gpgme-1.13.1.tar.bz2",
              "https://gnupg.org/ftp/gcrypt/scute/scute-1.6.0.tar.bz2",
              "https://gnupg.org/ftp/gcrypt/gpa/gpa-0.10.0.tar.bz2"
-             "https://gnupg.org/ftp/gcrypt/gnupg/gnupg-2.2.20.tar.bz2"
              ]
 def getbasename(s):
     basename = path.basename(s)
