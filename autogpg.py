@@ -37,8 +37,8 @@ def executecommand(cmd,url=""):
     logging.info("execute "+cmd)
     status = os.system(cmd)
     if status != 0:
-        logging.error(" cmd:"+cmd+"url:"+url )
-        errorhandle(" cmd:"+cmd+"url:"+url )
+        logging.error(" cmd: "+cmd+" url: "+url )
+        errorhandle(" cmd: "+cmd+" url: "+url )
 def run(url):
     urlbasename = getbasename(url)
     tarbasename = removetar(urlbasename)
@@ -69,7 +69,7 @@ def run(url):
     executecommand("make install",url)
 
 if __name__ == '__main__':
-    logging.basicConfig(filename= "autopgp.log",level=logging.DEBUG)
+    logging.basicConfig(filename= "autogpg.log",level=logging.DEBUG)
     for i in PREURL_LIST :
         run(i)
         logging.info("down file:" + i + "already ok.")
