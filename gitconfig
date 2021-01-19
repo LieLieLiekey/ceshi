@@ -5,7 +5,7 @@
 [alias]
     st = status
     lgdo = log --decorate --oneline
-    sa = log --color --graph --oneline --abbrev-commit
+    sa = log --color --graph --oneline --abbrev-commit --all
     lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Cr
     lga = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%C
     l1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset
